@@ -25,7 +25,8 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'my-web-app' 
+          app-name: 'my-static-html-app-123' 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_48FA4E8112284893B50DC91368E72420 }}
           package: .
+
 
