@@ -52,4 +52,5 @@ jobs:
           app-name: 'my-static-html-app-123'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_87F7032F3C594A9A842F5A433266959A }}
+
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_48FA4E8112284893B50DC91368E72420 }}
