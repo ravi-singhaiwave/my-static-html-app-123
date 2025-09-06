@@ -1,11 +1,22 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.static('public'));
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.post('/api/prompt', (req, res) => {
+    const userPrompt = req.body.prompt;
+    console.log(`Received prompt: ${userPrompt}`);
+
+    const mockResponse = {
+        response: `This is a mock response to your prompt: "${userPrompt}".`
+    };
+
+    res.json(mockResponse);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
