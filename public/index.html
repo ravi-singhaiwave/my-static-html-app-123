@@ -101,13 +101,14 @@
         <div class="chat-box" id="chat-box"></div>
         <div class="chat-input">
             <input type="text" id="user-input" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
+            <button id="send-button">Send</button>
         </div>
     </div>
 
     <script>
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
 
         function appendMessage(sender, message) {
             const messageElement = document.createElement('div');
@@ -125,11 +126,10 @@
             userInput.value = '';
 
             try {
-                const response = await fetch('https://api.example.com/v1/prompt', {
+                const response = await fetch('/api/prompt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                       
                     },
                     body: JSON.stringify({ prompt: message }),
                 });
@@ -144,6 +144,8 @@
                 appendMessage('bot', 'An error occurred. Please try again later.');
             }
         }
+
+        sendButton.addEventListener('click', sendMessage);
 
         userInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
