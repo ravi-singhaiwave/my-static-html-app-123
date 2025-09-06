@@ -13,7 +13,7 @@ app.post('/api/prompt', async (req, res) => {
 
     try {
         // This is the outbound API call to the external service.
-        const response = await fetch('https://api.example.com/v1/prompt', {
+        const response = await fetch('https://api.agify.io/?name=ravi', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
