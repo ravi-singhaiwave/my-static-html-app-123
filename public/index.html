@@ -134,12 +134,21 @@
                     body: JSON.stringify({ prompt: message }),
                 });
 
-                if (response.ok) {
+               if (response.ok) {
                     const data = await response.json();
-                    appendMessage('bot', data.response);
-                } else {
-                    appendMessage('bot', 'Sorry, something went wrong.');
                     
+                    // The server's response format is { "response": "{...}" }
+                    // We need to parse this string to a JSON object
+                    const apiResponse = JSON.parse(data.response);
+
+                    // Check if the API response contains the 'age' property
+                    if (apiResponse.age) {
+                        appendMessage('bot', `The API identified your name as "${apiResponse.name}" and estimates your age to be ${apiResponse.age} years.`);
+                    } else {
+                        appendMessage('bot', `The API did not provide an age for the name "${apiResponse.name}".`);
+                    }
+                } else {
+                    appendMessage('bot', 'Sorry, something went wrong with the server.');
                 }
             } catch (error) {
                 appendMessage('bot', 'An error occurred. Please try again later.');
