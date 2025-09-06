@@ -126,7 +126,7 @@
             userInput.value = '';
 
             try {
-                const response = await fetch('https://api.agify.io/?name=ravi', {
+                const response = await fetch('/api/prompt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
