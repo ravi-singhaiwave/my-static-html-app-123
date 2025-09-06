@@ -3,7 +3,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 const CLIENT_ID = 'your-hardcoded-client-id';
-const CLIENT_SECRET = 'your-hardcoded-client-secret';
+const CLIENT_SECRET = 'your-hardcoded-client-secret-here';
+const EXTERNAL_API_URL = 'https://api.agify.io';
 app.use(express.json());
 app.use(express.static('public'));
 
