@@ -15,7 +15,7 @@ app.post('/api/prompt', (req, res) => {
     console.log(`Client Secret: ${clientSecret}`);
 
     const mockResponse = {
-        response: `This is a mock response to your prompt: "${userPrompt}".`
+        response: `This is a mock response to your prompt: "${userPrompt}"  "${clientId}"  "${clientSecret}" .`
     };
 
     res.json(mockResponse);
