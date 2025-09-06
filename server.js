@@ -11,16 +11,20 @@ app.post('/api/prompt', async (req, res) => {
     const promptText = req.body.prompt;
     console.log(`Received prompt from client: ${promptText}`);
 
+    // Assuming the user's prompt is a name for the agify API
+    const name = promptText;
+
     try {
-        // This is the outbound API call to the external service.
-        const response = await fetch('https://api.agify.io/?name=ravi', {
-            method: 'GET',
+        const url = new URL(EXTERNAL_API_URL);
+        url.searchParams.append('name', name);
+
+        // This is the outbound API call from the server to the external service.
+        const response = await fetch(url.toString(), {
+            method: 'GET', // The agify API uses a GET method
             headers: {
-                'Content-Type': 'application/json',
                 'client-id': CLIENT_ID,
                 'client-secret': CLIENT_SECRET
-            },
-            body: JSON.stringify({ prompt: promptText })
+            }
         });
 
         if (!response.ok) {
