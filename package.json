@@ -1,7 +1,7 @@
 {
-  "name": "my-web-app",
+  "name": "simple-chatbot-app",
   "version": "1.0.0",
-  "description": "A simple Node.js app for Azure App Service",
+  "description": "A simple chatbot app for Azure App Service",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
