@@ -7,7 +7,7 @@ const CLIENT_SECRET = 'your-hardcoded-client-secret';
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/api/prompt', async (req, res) => {
+app.post('https://api.agify.io/?name=ravi', async (req, res) => {
     const promptText = req.body.prompt;
     console.log(`Received prompt from client: ${promptText}`);
 
