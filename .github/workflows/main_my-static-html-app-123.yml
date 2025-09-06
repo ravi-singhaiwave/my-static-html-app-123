@@ -3,7 +3,7 @@ name: Deploy to Azure App Service
 on:
   push:
     branches:
-      - devmain
+      - main
   workflow_dispatch:
 
 jobs:
@@ -28,6 +28,7 @@ jobs:
           app-name: 'my-static-html-app-123' 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_48FA4E8112284893B50DC91368E72420 }}
           package: .
+
 
 
 
