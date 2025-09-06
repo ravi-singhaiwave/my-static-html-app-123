@@ -15,6 +15,16 @@ const CLIENT_ID = 'your-hardcoded-client-id';
 const CLIENT_SECRET = 'your-hardcoded-client-secret-here';
 const EXTERNAL_API_URL = 'https://api.agify.io';
 
+// Use CORS middleware to allow cross-origin requests.
+app.use(cors());
+
+// Use express.json middleware to parse JSON bodies from incoming requests.
+app.use(express.json());
+
+// Serve the static HTML file from the 'public' directory.
+// This is done BEFORE applying authentication to allow the page to load.
+app.use(express.static('public'));
+
 // Middleware for Basic Authentication
 const basicAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -39,17 +49,8 @@ const basicAuth = (req, res, next) => {
     }
 };
 
-// Use CORS middleware to allow cross-origin requests.
-app.use(cors());
-
-// Use express.json middleware to parse JSON bodies from incoming requests.
-app.use(express.json());
-
-// Apply basic authentication to all routes
-app.use(basicAuth);
-
-// Serve the static HTML file from the 'public' directory.
-app.use(express.static('public'));
+// Apply basic authentication only to the API routes
+app.use('/api', basicAuth);
 
 // API endpoint to handle the chatbot prompt.
 app.post('/api/prompt', async (req, res) => {
