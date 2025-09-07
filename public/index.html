@@ -138,7 +138,8 @@
                     const data = await response.json();
                     
                     if (data.age) {
-                        appendMessage('bot', `"${data}"`);
+                        appendMessage('bot', `<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                       // appendMessage('bot', `The API identified your name as "${data.name}" and estimates your age to be ${data.age} years.`);
                     } else {
                         appendMessage('bot', `The API did not provide an age for the name "${data.name}".`);
                     }
